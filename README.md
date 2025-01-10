@@ -20,3 +20,8 @@ The name is a mix of Minecraft and Economy!
 1. Download the latest release of **Mineconomy**.  
 2. Place the downloaded `.phar` file in the `plugins` folder of your PocketMine-MP server.  
 3. Restart your server.  
+
+# Addon
+**Mineconomy** has ScoreHud support!
+
+[Link to addon](https://poggit.pmmp.io/ci/Terpz710/MineconomyScoreTag/MineconomyScoreTag)
