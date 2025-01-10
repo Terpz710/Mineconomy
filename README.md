@@ -24,4 +24,6 @@ The name is a mix of Minecraft and Economy!
 # Addon
 **Mineconomy** has ScoreHud support!
 
-[Link to addon](https://poggit.pmmp.io/ci/Terpz710/MineconomyScoreTag/MineconomyScoreTag)
+Link to addon:
+
+[Click me!](https://github.com/Terpz710/MineconomyScoreTag)
