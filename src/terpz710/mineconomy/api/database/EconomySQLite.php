@@ -85,7 +85,7 @@ final class EconomySQLite implements EconomyInterface {
             return;
         }
 
-        $oldBalance = $this->getBalance($player);
+        $oldBalance = $this->getBalance($player) ?? 0; // Ensure oldBalance is never null
         $newBalance = $oldBalance + $amount;
 
         $statement = $this->database->prepare("UPDATE economy SET balance = :balance WHERE uuid = :uuid;");
@@ -104,7 +104,7 @@ final class EconomySQLite implements EconomyInterface {
             return;
         }
 
-        $oldBalance = $this->getBalance($player);
+        $oldBalance = $this->getBalance($player) ?? 0; // Ensure oldBalance is never null
         $newBalance = $oldBalance - $amount;
 
         $statement = $this->database->prepare("UPDATE economy SET balance = :balance WHERE uuid = :uuid;");
@@ -123,7 +123,7 @@ final class EconomySQLite implements EconomyInterface {
             return;
         }
 
-        $oldBalance = $this->getBalance($player);
+        $oldBalance = $this->getBalance($player) ?? 0; // Ensure oldBalance is never null
         $newBalance = $amount;
 
         $statement = $this->database->prepare("UPDATE economy SET balance = :balance WHERE uuid = :uuid;");
