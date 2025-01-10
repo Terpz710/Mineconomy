@@ -25,13 +25,9 @@ final class Mineconomy extends PluginBase {
 
     protected static self $instance;
 
-    private EconomyManager $ecoManager;
-
-    private Tag $scorehud;
+    protected EconomyManager $ecoManager;
 
     //public static Config $messages;
-
-    protected Economy $eco; 
 
     protected function onLoad() : void{
         self::$instance = $this;
