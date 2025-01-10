@@ -4,7 +4,7 @@
 # Options:
 # - "json": Uses a JSON file to store balances (default)
 # - "mysql": Uses a MySQL database to store balances
-# - "sqlite": Uses a MySQLite database to store balances
+# - "sqlite": Uses a SQLite database to store balances
 database-type: "json"
 
 # Starting amount for new player accounts
