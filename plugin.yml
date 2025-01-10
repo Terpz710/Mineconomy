@@ -1,0 +1,19 @@
+name: Mineconomy
+version: 1.0.0
+author: Terpz710
+api: 5.0.0
+main: terpz710\mineconomy\Mineconomy
+
+permissions:
+  mineconomy.addfunds:
+    default: op
+  mineconomy.removefunds:
+    default: op
+  mineconomy.setfunds:
+    default: op
+  mineconomy.payfunds:
+    default: true
+  mineconomy.myfunds:
+    default: true
+  mineconomy.seefunds:
+    default: true

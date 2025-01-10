@@ -1,0 +1,18 @@
+# Terpz710
+
+# Choose the storage type for player balances:
+# Options:
+# - "json": Uses a JSON file to store balances (default)
+# - "mysql": Uses a MySQL database to store balances
+# - "sqlite": Uses a MySQLite database to store balances
+database-type: "json"
+
+# Starting amount for new player accounts
+starting-amount: 1000
+
+# MySQL Database Configuration
+mysql-host: 127.0.0.1         # Hostname or IP of your MySQL server
+mysql-user: "root"            # Username for MySQL
+mysql-password: ""            # Password for MySQL
+mysql-database: "mineconomy"  # Database name for storing player balances
+mysql-port: 3306              # Port number
