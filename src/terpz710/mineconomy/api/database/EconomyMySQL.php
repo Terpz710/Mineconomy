@@ -103,7 +103,7 @@ final class EconomyMySQL implements EconomyInterface {
         $stmt->close();
         $connection->close();
 
-        return $balance;
+        return $balance !== null ? (int) $balance : null;
     }
 
     public function addFunds(Player|string $player, int $amount) : void{
