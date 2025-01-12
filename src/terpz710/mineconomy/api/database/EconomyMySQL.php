@@ -103,7 +103,7 @@ final class EconomyMySQL implements EconomyInterface {
         $stmt->close();
         $connection->close();
 
-        return $balance !== null ? (int) $balance : null;
+        return $balance !== null ? (int)$balance : null;
     }
 
     public function addFunds(Player|string $player, int $amount) : void{
@@ -112,17 +112,17 @@ final class EconomyMySQL implements EconomyInterface {
             return;
         }
 
+        $oldBalance = $this->getBalance($player) ?? 0;
+        $newBalance = $oldBalance + $amount;
+
         $connection = $this->getConnection();
-        $stmt = $connection->prepare("UPDATE economy SET balance = balance + ? WHERE uuid = ?");
-        $stmt->bind_param("is", $amount, $uuid);
+        $stmt = $connection->prepare("UPDATE economy SET balance = ? WHERE uuid = ?");
+        $stmt->bind_param("is", $newBalance, $uuid);
         $stmt->execute();
         $stmt->close();
         $connection->close();
 
-        $newBalance = $this->getBalance($player);
-        if ($newBalance !== null) {
-            (new BalanceChangeEvent($player, $newBalance, $amount, "add"))->call();
-        }
+        (new BalanceChangeEvent($player, $oldBalance, $newBalance, "add"))->call();
     }
 
     public function removeFunds(Player|string $player, int $amount) : void{
@@ -131,17 +131,17 @@ final class EconomyMySQL implements EconomyInterface {
             return;
         }
 
+        $oldBalance = $this->getBalance($player) ?? 0;
+        $newBalance = max(0, $oldBalance - $amount);
+
         $connection = $this->getConnection();
-        $stmt = $connection->prepare("UPDATE economy SET balance = balance - ? WHERE uuid = ?");
-        $stmt->bind_param("is", $amount, $uuid);
+        $stmt = $connection->prepare("UPDATE economy SET balance = ? WHERE uuid = ?");
+        $stmt->bind_param("is", $newBalance, $uuid);
         $stmt->execute();
         $stmt->close();
         $connection->close();
 
-        $newBalance = $this->getBalance($player);
-        if ($newBalance !== null) {
-            (new BalanceChangeEvent($player, $newBalance, $amount, "remove"))->call();
-        }
+        (new BalanceChangeEvent($player, $oldBalance, $newBalance, "remove"))->call();
     }
 
     public function setFunds(Player|string $player, int $amount) : void{
@@ -150,6 +150,8 @@ final class EconomyMySQL implements EconomyInterface {
             return;
         }
 
+        $oldBalance = $this->getBalance($player) ?? 0;
+
         $connection = $this->getConnection();
         $stmt = $connection->prepare("UPDATE economy SET balance = ? WHERE uuid = ?");
         $stmt->bind_param("is", $amount, $uuid);
@@ -157,6 +159,6 @@ final class EconomyMySQL implements EconomyInterface {
         $stmt->close();
         $connection->close();
 
-        (new BalanceChangeEvent($player, $amount, 0, "set"))->call();
+        (new BalanceChangeEvent($player, $oldBalance, $amount, "set"))->call();
     }
 }
