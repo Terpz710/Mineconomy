@@ -31,27 +31,37 @@ final class EconomySQLite implements EconomyInterface {
         ");
     }
 
-    private function getUUID(Player|string $player): ?string {
+    public function hasBalance(Player|string $player) : bool{
+        $query = "SELECT 1 FROM economy WHERE uuid = :uuid OR LOWER(username) = LOWER(:username);";
+        $statement = $this->database->prepare($query);
+
         if ($player instanceof Player) {
-            return $player->getUniqueId()->toString();
+            $statement->bindValue(":uuid", $player->getUniqueId()->toString(), SQLITE3_TEXT);
+            $statement->bindValue(":username", $player->getName(), SQLITE3_TEXT);
+        } else {
+            $statement->bindValue(":uuid", "", SQLITE3_TEXT);
+            $statement->bindValue(":username", $player, SQLITE3_TEXT);
         }
 
-        $statement = $this->database->prepare("SELECT uuid FROM economy WHERE LOWER(username) = LOWER(:username);");
-        $statement->bindValue(":username", $player, SQLITE3_TEXT);
         $result = $statement->execute();
-        $data = $result->fetchArray(SQLITE3_ASSOC);
+        $exists = $result->fetchArray(SQLITE3_ASSOC) !== false;
         $statement->close();
 
-        return $data["uuid"] ?? null;
+        return $exists;
     }
 
-    public function createBalance(Player|string $player): void {
+    public function createBalance(Player|string $player) : void{
         if ($player instanceof Player) {
             $uuid = $player->getUniqueId()->toString();
+            $username = $player->getName();
+
             if (!$this->hasBalance($player)) {
-                $statement = $this->database->prepare("INSERT INTO economy (uuid, username, balance) VALUES (:uuid, :username, :balance);");
+                $statement = $this->database->prepare("
+                    INSERT INTO economy (uuid, username, balance) 
+                    VALUES (:uuid, :username, :balance);
+                ");
                 $statement->bindValue(":uuid", $uuid, SQLITE3_TEXT);
-                $statement->bindValue(":username", $player->getName(), SQLITE3_TEXT);
+                $statement->bindValue(":username", $username, SQLITE3_TEXT);
                 $statement->bindValue(":balance", Mineconomy::getInstance()->getConfig()->get("starting-amount"), SQLITE3_INTEGER);
                 $statement->execute();
                 $statement->close();
@@ -59,80 +69,85 @@ final class EconomySQLite implements EconomyInterface {
         }
     }
 
-    public function hasBalance(Player|string $player): bool {
-        $uuid = $this->getUUID($player);
-        return $uuid !== null;
-    }
+    public function getBalance(Player|string $player) : ?int{
+        $query = "SELECT balance FROM economy WHERE uuid = :uuid OR LOWER(username) = LOWER(:username);";
+        $statement = $this->database->prepare($query);
 
-    public function getBalance(Player|string $player): ?int {
-        $uuid = $this->getUUID($player);
-        if ($uuid === null) {
-            return null;
+        if ($player instanceof Player) {
+            $statement->bindValue(":uuid", $player->getUniqueId()->toString(), SQLITE3_TEXT);
+            $statement->bindValue(":username", $player->getName(), SQLITE3_TEXT);
+        } else {
+            $statement->bindValue(":uuid", "", SQLITE3_TEXT);
+            $statement->bindValue(":username", $player, SQLITE3_TEXT);
         }
 
-        $statement = $this->database->prepare("SELECT balance FROM economy WHERE uuid = :uuid;");
-        $statement->bindValue(":uuid", $uuid, SQLITE3_TEXT);
         $result = $statement->execute();
         $data = $result->fetchArray(SQLITE3_ASSOC);
         $statement->close();
 
-        return $data ? (int) $data["balance"] : null;
+        return $data ? (int)$data["balance"] : null;
     }
 
-    public function addFunds(Player|string $player, int $amount): void {
-        $uuid = $this->getUUID($player);
-        if ($uuid === null) {
-            return;
-        }
-
+    public function addFunds(Player|string $player, int $amount) : void{
         $oldBalance = $this->getBalance($player) ?? 0;
         $newBalance = $oldBalance + $amount;
 
-        $statement = $this->database->prepare("UPDATE economy SET balance = :balance WHERE uuid = :uuid;");
-        $statement->bindValue(":balance", $newBalance, SQLITE3_INTEGER);
-        $statement->bindValue(":uuid", $uuid, SQLITE3_TEXT);
-        $statement->execute();
-        $statement->close();
+        $this->updateBalance($player, $newBalance);
 
         $event = new BalanceChangeEvent($player, $oldBalance, $newBalance, "add");
         $event->call();
     }
 
-    public function removeFunds(Player|string $player, int $amount): void {
-        $uuid = $this->getUUID($player);
-        if ($uuid === null) {
-            return;
-        }
-
+    public function removeFunds(Player|string $player, int $amount) : void{
         $oldBalance = $this->getBalance($player) ?? 0;
-        $newBalance = $oldBalance - $amount;
+        $newBalance = max(0, $oldBalance - $amount);
 
-        $statement = $this->database->prepare("UPDATE economy SET balance = :balance WHERE uuid = :uuid;");
-        $statement->bindValue(":balance", $newBalance, SQLITE3_INTEGER);
-        $statement->bindValue(":uuid", $uuid, SQLITE3_TEXT);
-        $statement->execute();
-        $statement->close();
+        $this->updateBalance($player, $newBalance);
 
         $event = new BalanceChangeEvent($player, $oldBalance, $newBalance, "remove");
         $event->call();
     }
 
-    public function setFunds(Player|string $player, int $amount): void {
-        $uuid = $this->getUUID($player);
-        if ($uuid === null) {
-            return;
-        }
-
-        $oldBalance = $this->getBalance($player) ?? 0; // Ensure oldBalance is never null
+    public function setFunds(Player|string $player, int $amount) : void{
+        $oldBalance = $this->getBalance($player) ?? 0;
         $newBalance = $amount;
 
-        $statement = $this->database->prepare("UPDATE economy SET balance = :balance WHERE uuid = :uuid;");
-        $statement->bindValue(":balance", $newBalance, SQLITE3_INTEGER);
-        $statement->bindValue(":uuid", $uuid, SQLITE3_TEXT);
-        $statement->execute();
-        $statement->close();
+        $this->updateBalance($player, $newBalance);
 
         $event = new BalanceChangeEvent($player, $oldBalance, $newBalance, "set");
         $event->call();
+    }
+
+    private function updateBalance(Player|string $player, int $newBalance) : void{
+        $uuid = null;
+        $username = null;
+
+        if ($player instanceof Player) {
+            $uuid = $player->getUniqueId()->toString();
+            $username = $player->getName();
+        } else {
+            $username = $player;
+            $uuid = $this->getUUIDByUsername($username);
+        }
+
+        if ($uuid !== null) {
+            $statement = $this->database->prepare("
+                UPDATE economy SET balance = :balance WHERE uuid = :uuid;
+            ");
+            $statement->bindValue(":balance", $newBalance, SQLITE3_INTEGER);
+            $statement->bindValue(":uuid", $uuid, SQLITE3_TEXT);
+            $statement->execute();
+            $statement->close();
+        }
+    }
+
+    private function getUUIDByUsername(string $username) : ?string{
+        $statement = $this->database->prepare("SELECT uuid FROM economy WHERE LOWER(username) = LOWER(:username);");
+        $statement->bindValue(":username", $username, SQLITE3_TEXT);
+        $result = $statement->execute();
+        $data = $result->fetchArray(SQLITE3_ASSOC);
+        $statement->close();
+
+        return $data["uuid"] ?? null;
     }
 }
