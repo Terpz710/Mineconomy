@@ -11,11 +11,6 @@ use pocketmine\player\Player;
 
 use terpz710\mineconomy\Mineconomy;
 
-use Ifera\ScoreHud\ScoreHud;
-use Ifera\ScoreHud\scoreboard\ScoreTag;
-use Ifera\ScoreHud\event\TagsResolveEvent;
-use Ifera\ScoreHud\event\PlayerTagsUpdateEvent;
-
 class EventListener implements Listener {
 
     public function join(PlayerJoinEvent $event) : void{
