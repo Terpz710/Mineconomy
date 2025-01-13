@@ -7,6 +7,9 @@ namespace terpz710\mineconomy\commands;
 use pocketmine\command\Command;
 use pocketmine\command\CommandSender;
 
+use pocketmine\plugin\Plugin;
+use pocketmine\plugin\PluginOwned;
+
 use pocketmine\player\Player;
 
 use pocketmine\Server;
@@ -15,8 +18,9 @@ use terpz710\mineconomy\Mineconomy;
 
 use terpz710\mineconomy\utils\Error;
 use terpz710\mineconomy\utils\Message;
+use terpz710\mineconomy\utils\Permission;
 
-class AddFundsCommand extends Command {
+class AddFundsCommand extends Command implements PluginOwned {
 
     public function __construct() {
         parent::__construct("addfunds");
@@ -65,5 +69,9 @@ class AddFundsCommand extends Command {
             }
         }
         return true;
+    }
+
+    public function getOwningPlugin() : Plugin{
+        return Mineconomy::getInstance();
     }
 }
