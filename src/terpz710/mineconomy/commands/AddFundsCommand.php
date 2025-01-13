@@ -26,7 +26,7 @@ class AddFundsCommand extends Command implements PluginOwned {
         parent::__construct("addfunds");
         $this->setDescription("Add funds to a player's account");
         $this->setUsage("Usage: /addfunds <player> <amount>");
-        $this->setPermission("mineconomy.addfunds");
+        $this->setPermission(Permission::PERM_ADDFUNDS);
     }
 
     public function execute(CommandSender $sender, string $commandLabel, array $args) : bool{
@@ -48,7 +48,7 @@ class AddFundsCommand extends Command implements PluginOwned {
         $amount = (int) $args[1];
 
         if ($amount <= 0) {
-            $sender->sendMessage("The amount must be greater than 0!");
+            $sender->sendMessage((string) new Message("must-be-positive-amount"));
             return false;
         }
 
