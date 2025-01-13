@@ -8,7 +8,7 @@ use pocketmine\plugin\PluginBase;
 
 use pocketmine\player\Player;
 
-//use pocketmine\utils\Config;
+use pocketmine\utils\Config;
 
 use terpz710\mineconomy\commands\AddFundsCommand;
 use terpz710\mineconomy\commands\RemoveFundsCommand;
@@ -27,7 +27,7 @@ final class Mineconomy extends PluginBase {
 
     protected EconomyManager $ecoManager;
 
-    //public static Config $messages;
+    public Config $messages;
 
     protected function onLoad() : void{
         self::$instance = $this;
@@ -35,7 +35,7 @@ final class Mineconomy extends PluginBase {
 
     protected function onEnable() : void{
         $this->saveDefaultConfig();
-        //$this->saveResource("messages.yml");
+        $this->saveResource("messages.yml");
         $this->getServer()->getPluginManager()->registerEvents(new EventListener(), $this);
         $this->getServer()->getCommandMap()->registerAll("Mineconomy", [
             new AddFundsCommand(),
@@ -48,7 +48,7 @@ final class Mineconomy extends PluginBase {
 
         $this->ecoManager = new EconomyManager();
 
-        //self::$messages = new Config($this->getDataFolder() . "messages.yml");
+        $this->messages = new Config($this->getDataFolder() . "messages.yml");
     }
 
     public static function getInstance() : self{
