@@ -76,7 +76,7 @@ Mineconomy::getInstance()->setFunds("Steve");
 ```
 
 **How to check if a player has a balance before doing anything:**
-```
+```php
 /* $player can be either a players name or the actual Player class **/
 
 if (Mineconomy::getInstance()->hasBalance($player)) {
