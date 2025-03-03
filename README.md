@@ -9,12 +9,12 @@ The name is a mix of Minecraft and Economy!
 # Features  
 - View balances for yourself or other players.  
 - Add, remove, or set player balances easily.  
-- Supports three storage options:  
-  - JSON  
+- Supports 2 storage options:
   - MySQL  
   - SQLite  
-- Fully customizable messages and commands to suit your server's needs.  
-- Simple configuration for quick setup.  
+- Fully customizable messages and commands to suit your server's needs.
+- Multi-Language support.
+- Simple configuration for quick setup.
 
 # Installation  
 1. Download the latest release of **Mineconomy**.  
