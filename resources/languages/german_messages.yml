@@ -1,0 +1,64 @@
+# Erstellt von Terpz710
+
+# Nachricht, wenn jemand den Befehl über die Konsole ausführt
+use-command-ingame: "Dieser Befehl kann nur im Spiel verwendet werden"
+
+# Nachricht, wenn ein Spieler kein Guthaben hat
+no-balance: "{name} hat kein Guthaben"
+
+# Nachricht, wenn ein Spieler eine negative Zahl eingibt
+amount-cannot-be-negative: "Der Betrag muss größer als null sein"
+
+# ---Sektion Guthaben hinzufügen---
+
+# Nachricht, wenn ein Spieler erfolgreich Geld erhält
+successfully-added-funds: "Erfolgreich ${amount} zum Guthaben von {name} hinzugefügt"
+
+# -----------------------
+
+# ---Sektion Guthaben entfernen---
+
+# Nachricht, wenn der Spieler nicht genug Geld hat, um es zu entfernen
+not-enough-funds-to-remove: "{name} hat nur ${balance}, kann ${amount} nicht entfernen"
+
+# Nachricht, wenn ein Benutzer erfolgreich Geld entfernt
+successfully-removed-funds: "Erfolgreich ${amount} vom Guthaben von {name} entfernt"
+
+# --------------------------
+
+# ---Sektion Guthaben setzen---
+
+# Nachricht, wenn das Guthaben eines Spielers erfolgreich gesetzt wurde
+successfully-set-balance: "Das Guthaben von {name} wurde erfolgreich auf ${amount} gesetzt"
+
+# -----------------------
+
+# ---Sektion Guthaben überweisen---
+
+# Nachricht, wenn ein Spieler einen negativen Betrag eingibt
+paid-funds-cannot-be-negative: "Du musst einen positiven Betrag senden"
+
+# Nachricht, wenn ein Spieler nicht genug Guthaben hat, um zu zahlen
+not-enough-funds: "Du hast nicht genug Guthaben, um ${amount} zu senden"
+
+# Nachricht, wenn die Zahlung erfolgreich durchgeführt wurde
+successfully-paid-reciever: "Du hast ${amount} an {recipient} gesendet"
+
+# Nachricht, wenn der Empfänger die Zahlung erhält (falls online)
+successfully-recieved-payment: "Du hast ${amount} von {name} erhalten"
+
+# -----------------------
+
+# ---Sektion Dein Guthaben---
+
+# Nachricht, die dein aktuelles Guthaben anzeigt
+your-balance: "Guthaben: ${balance}"
+
+# ------------------------
+
+# ---Sektion Guthaben anzeigen---
+
+# Nachricht, die das Guthaben eines anderen Spielers anzeigt
+player-balance: "Das Guthaben von {name} beträgt: ${balance}"
+
+# -----------------------

@@ -1,0 +1,64 @@
+# Fait par Terpz710
+
+# Message lorsqu'une personne exécute la commande via la console
+use-command-ingame: "Cette commande ne peut être utilisée que dans le jeu"
+
+# Message lorsqu'un joueur n'a pas de solde
+no-balance: "{name} n'a pas de solde"
+
+# Message lorsqu'un joueur saisit un nombre négatif
+amount-cannot-be-negative: "Le montant doit être supérieur à zéro"
+
+# ---Section Ajouter des fonds---
+
+# Message lorsqu'un joueur reçoit de l'argent avec succès
+successfully-added-funds: "${amount} ont été ajoutés avec succès au solde de {name}"
+
+# -----------------------
+
+# ---Section Retirer des fonds---
+
+# Message lorsque le joueur n'a pas assez d'argent pour retirer
+not-enough-funds-to-remove: "{name} n'a que ${balance}, impossible de retirer ${amount}"
+
+# Message lorsqu'un utilisateur retire de l'argent avec succès
+successfully-removed-funds: "${amount} ont été retirés avec succès du solde de {name}"
+
+# --------------------------
+
+# ---Section Définir les fonds---
+
+# Message lorsqu'on définit avec succès le solde d'un joueur
+successfully-set-balance: "Le solde de {name} a été défini à ${amount}"
+
+# -----------------------
+
+# ---Section Payer des fonds---
+
+# Message lorsqu'un joueur saisit un montant négatif en payant
+paid-funds-cannot-be-negative: "Vous devez envoyer un montant positif"
+
+# Message lorsqu'un joueur n'a pas assez de fonds pour payer
+not-enough-funds: "Vous n'avez pas assez de fonds pour envoyer ${amount}"
+
+# Message lorsque la transaction de paiement est réussie
+successfully-paid-reciever: "Vous avez envoyé ${amount} à {recipient}"
+
+# Message lorsque le destinataire reçoit le paiement (s'il est en ligne)
+successfully-recieved-payment: "Vous avez reçu ${amount} de {name}"
+
+# -----------------------
+
+# ---Section Votre solde---
+
+# Message affichant votre solde actuel
+your-balance: "Solde : ${balance}"
+
+# ------------------------
+
+# ---Section Voir le solde---
+
+# Message affichant le solde d'un autre joueur
+player-balance: "Le solde de {name} est : ${balance}"
+
+# -----------------------

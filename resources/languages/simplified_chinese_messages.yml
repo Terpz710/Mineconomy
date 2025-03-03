@@ -1,0 +1,64 @@
+# 由 Terpz710 制作
+
+# 当有人通过控制台执行命令时的消息
+use-command-ingame: "此命令只能在游戏内使用"
+
+# 当玩家没有余额时的消息
+no-balance: "{name} 没有余额"
+
+# 当玩家输入负数时的消息
+amount-cannot-be-negative: "金额必须大于零"
+
+# ---添加资金部分---
+
+# 当玩家成功收到金钱时的消息
+successfully-added-funds: "成功向 {name} 的余额添加了 ${amount}"
+
+# -----------------------
+
+# ---移除资金部分---
+
+# 当玩家没有足够的资金可移除时的消息
+not-enough-funds-to-remove: "{name} 只有 ${balance}，无法移除 ${amount}"
+
+# 当用户成功移除金钱时的消息
+successfully-removed-funds: "成功从 {name} 的余额中移除了 ${amount}"
+
+# --------------------------
+
+# ---设置资金部分---
+
+# 当成功设置玩家余额时的消息
+successfully-set-balance: "成功将 {name} 的余额设置为 ${amount}"
+
+# -----------------------
+
+# ---支付资金部分---
+
+# 当玩家在支付时输入负数时的消息
+paid-funds-cannot-be-negative: "你必须发送一个正数金额"
+
+# 当玩家没有足够的资金进行支付时的消息
+not-enough-funds: "你的余额不足，无法发送 ${amount}"
+
+# 当支付交易成功时的消息
+successfully-paid-reciever: "你已向 {recipient} 发送 ${amount}"
+
+# 当接收者成功收到付款（如果在线）时的消息
+successfully-recieved-payment: "你已收到来自 {name} 的 ${amount}"
+
+# -----------------------
+
+# ---你的资金部分---
+
+# 显示当前余额的消息
+your-balance: "余额：${balance}"
+
+# ------------------------
+
+# ---查看资金部分---
+
+# 显示其他玩家余额的消息
+player-balance: "{name} 的余额为：${balance}"
+
+# -----------------------

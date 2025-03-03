@@ -1,0 +1,11 @@
+name: Mineconony
+version: 1.0.0
+author: Terpz710
+api: 5.3.0
+main: terpz710\mineconomy\Mineconomy
+
+permissions:
+  mineconomy.cmd:
+    default: true
+  mineconomy.cmd.op:
+    default: op

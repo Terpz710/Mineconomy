@@ -1,0 +1,15 @@
+{
+    "name": "terpz710/mineconomy",
+    "type": "project",
+    "license": "GNU General Public License v3.0",
+    "require": {
+        "pocketmine/pocketmine-mp": "^5.0.0",
+        "cortexpe/commando": "*",
+        "poggit/libasynql": "*"
+    },
+    "autoload": {
+        "psr-0": {
+            "Mineconomy\\": "src/Mineconomy"
+        }
+    }
+}

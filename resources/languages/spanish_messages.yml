@@ -1,0 +1,64 @@
+# Hecho por Terpz710
+
+# Mensaje cuando alguien ejecuta el comando desde la consola
+use-command-ingame: "Este comando solo puede usarse en el juego"
+
+# Mensaje cuando un jugador no tiene saldo
+no-balance: "{name} no tiene saldo"
+
+# Mensaje cuando un jugador ingresa un número negativo
+amount-cannot-be-negative: "La cantidad debe ser mayor a cero"
+
+# ---Sección de añadir fondos---
+
+# Mensaje cuando un jugador recibe dinero exitosamente
+successfully-added-funds: "Se han añadido ${amount} exitosamente al saldo de {name}"
+
+# -----------------------
+
+# ---Sección de eliminar fondos---
+
+# Mensaje cuando el jugador no tiene suficiente dinero para eliminar
+not-enough-funds-to-remove: "{name} solo tiene ${balance}, no se pueden eliminar ${amount}"
+
+# Mensaje cuando un usuario elimina dinero exitosamente
+successfully-removed-funds: "Se han eliminado ${amount} exitosamente del saldo de {name}"
+
+# --------------------------
+
+# ---Sección de establecer fondos---
+
+# Mensaje cuando se establece exitosamente el saldo de un jugador
+successfully-set-balance: "Se ha establecido el saldo de {name} en ${amount}"
+
+# -----------------------
+
+# ---Sección de pagar fondos---
+
+# Mensaje cuando un jugador ingresa una cantidad negativa al pagar
+paid-funds-cannot-be-negative: "Debes enviar una cantidad positiva"
+
+# Mensaje cuando un jugador no tiene suficiente saldo para pagar
+not-enough-funds: "No tienes suficientes fondos para enviar ${amount}"
+
+# Mensaje cuando la transacción de pago se realiza con éxito
+successfully-paid-reciever: "Has enviado ${amount} a {recipient}"
+
+# Mensaje cuando el receptor recibe el pago (si está en línea)
+successfully-recieved-payment: "Has recibido ${amount} de {name}"
+
+# -----------------------
+
+# ---Sección de tus fondos---
+
+# Mensaje que muestra tu saldo actual
+your-balance: "Saldo: ${balance}"
+
+# ------------------------
+
+# ---Sección de ver fondos---
+
+# Mensaje que muestra el saldo de otro jugador
+player-balance: "El saldo de {name} es: ${balance}"
+
+# -----------------------

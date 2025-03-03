@@ -1,0 +1,63 @@
+# Made by Terpz710
+
+# Message when someone runs the command via console
+use-command-ingame: "This command can only be used in-game"
+
+# Message when a player doesnt have a balance
+no-balance: "{name} has no balance"
+
+# Message when a player inputs a negative number
+amount-cannot-be-negative: "Amount must be greater than zero"
+
+# ---Add funds section---
+
+# Message when a player successfully recieves money
+successfully-added-funds: "Successfully added ${amount} to {name}'s balance"
+
+# -----------------------
+
+# ---Remove funds section---
+
+# Message when the player doesnt have enough money to remove
+not-enough-funds-to-remove: "{name} only has ${balance}, cannot remove ${amount}"
+
+# Message when a user successfully removed money
+successfully-removed-funds: "Successfully removed ${amount} from {name}'s balance"
+
+# --------------------------
+
+# ---Set funds section---
+
+# Message when successfully setting a players balance
+successfully-set-balance: "Successfully set {name}'s balance to ${amount}"
+# -----------------------
+
+# ---Pay funds section---
+
+# Message when a player inputs a negative number when paying
+paid-funds-cannot-be-negative: "You must send a positive amount"
+
+# Message when a player doesnt have enough funds to pay
+not-enough-funds: "You do not have enough funds to send ${amount}"
+
+# Message when the payment transaction went through
+successfully-paid-reciever: "You have sent ${amount} to {recipient}"
+
+# Message when the reciever recieved the payment (if theyre online)
+successfully-recieved-payment: "You have received ${amount} from {name}"
+
+# -----------------------
+
+# ---Your funds section---
+
+# Message displaying your current balance
+your-balance: "Balance: ${balance}"
+
+# ------------------------
+
+# ---See funds section---
+
+# Message displaying another players balance
+player-balance: "The balance of {name} is: ${balance}"
+
+# -----------------------

@@ -1,0 +1,38 @@
+# Made by Terpz710 :p
+
+# Starting amount
+starting-amount: 1000
+
+# NOTE: All translations were done via Google translate, Sorry if Google butchered your language!
+# Choose the language for all the messages:
+# Options:
+# - "en": English (default)
+# - "es": Spanish
+# - "fr": French
+# - "de": German
+# - "zh-t": Traditional Chinese
+# - "zh-s": Simplified Chinese
+language: "en"
+
+# Choose a way to store player balances
+database:
+  # The database type. "sqlite" and "mysql" are supported.
+  type: sqlite
+
+  # Edit these settings only if you choose "sqlite".
+  sqlite:
+    # The file name of the database in the plugin data folder.
+    # You can also put an absolute path here.
+    file: balances.db
+
+  # Edit these settings only if you choose "mysql".
+  mysql:
+    host: 127.0.0.1
+    # Avoid using the "root" user for security reasons.
+    username: root
+    password: ""
+    schema: your_schema
+
+  # The maximum number of simultaneous SQL queries
+  # Recommended: 1 for sqlite, 2 for MySQL. You may want to further increase this value if your MySQL connection is very slow.
+  worker-limit: 1
