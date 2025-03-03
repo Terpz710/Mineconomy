@@ -1,0 +1,14 @@
+--- # Poggit-CI Manifest. Open the CI at https://poggit.pmmp.io/ci/Terpz710/Mineconomy
+build-by-default: true
+branches:
+- stable
+projects:
+  Mineconomy:
+    path: ""
+    libs:
+       - src: poggit/libasynql/libasynql
+         version: ^4.2.3
+       - src: ACM-PocketMine-MP/Commando/Commando
+         version: ^3.2.1
+    lint: false
+...
