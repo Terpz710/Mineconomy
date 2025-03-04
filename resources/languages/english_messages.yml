@@ -29,7 +29,7 @@ successfully-removed-funds: "Successfully removed ${amount} from {name}'s balanc
 # ---Set funds section---
 
 # Message when successfully setting a players balance
-successfully-set-balanace: "Successfully set {name}'s balance to ${amount}"
+successfully-set-balance: "Successfully set {name}'s balance to ${amount}"
 # -----------------------
 
 # ---Pay funds section---
