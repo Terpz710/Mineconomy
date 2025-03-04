@@ -6,6 +6,8 @@ namespace terpz710\mineconomy;
 
 use pocketmine\plugin\PluginBase;
 
+use pocketmine\player\Player;
+
 use terpz710\mineconomy\commands\AddFundsCommand;
 use terpz710\mineconomy\commands\RemoveFundsCommand;
 use terpz710\mineconomy\commands\SetFundsCommand;
