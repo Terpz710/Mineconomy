@@ -47,7 +47,7 @@ class SetFundsCommand extends BaseCommand {
 
         if ($plugin->hasBalance($targetName)) {
             $plugin->setFunds($targetName, $amount);
-            $sender->sendMessage((string) new Message("successfully-set-funds", ["{name}", "{amount}"], [$targetName, number_format($amount)]));
+            $sender->sendMessage((string) new Message("successfully-set-balance", ["{name}", "{amount}"], [$targetName, number_format($amount)]));
         } else {
             $sender->sendMessage((string) new Message("no-balance", ["{name}"], [$targetName]));
         }
